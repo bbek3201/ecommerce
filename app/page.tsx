@@ -7,6 +7,7 @@ import { Cards } from "./components/Cards";
 import { useDebounce } from "use-debounce";
 import React from "react";
 import { ProductType } from "./types";
+import { Footer } from "./components/Footer";
 
 const PRODUCTS_PER_PAGE = 10;
 
@@ -68,17 +69,14 @@ export default function Home() {
       </div>
     );
   }
-
   return (
     <div className="min-h-screen bg-[#121212]">
       <Header />
-
       <Catergory
         category={category}
         setCategory={setCategory}
         setSkip={setSkip}
       />
-
       <main className="mx-auto max-w-7xl px-6 py-10">
         {/* Search */}
         <div className="mb-8">
@@ -92,17 +90,14 @@ export default function Home() {
             className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 placeholder-zinc-400 shadow-sm outline-none transition-colors focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder-zinc-500 dark:focus:border-zinc-500 dark:focus:ring-zinc-800 sm:max-w-md"
           />
         </div>
-
         <p className="mb-6 text-sm text-zinc-500 dark:text-zinc-400">
           {products.length} products found
         </p>
-
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((Product) => (
             <Cards key={Product.id} Product={Product} />
           ))}
         </div>
-
         <div className="mt-10 flex items-center justify-center gap-4">
           <button
             onClick={handlePrev}
@@ -115,7 +110,6 @@ export default function Home() {
             {Math.floor(skip / PRODUCTS_PER_PAGE) + 1} /
             {Math.ceil(total / PRODUCTS_PER_PAGE)}
           </span>
-
           <button
             onClick={handleNext}
             disabled={skip + PRODUCTS_PER_PAGE >= total}
@@ -125,12 +119,7 @@ export default function Home() {
           </button>
         </div>
       </main>
-
-      <footer className="mt-auto border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
-        <div className="mx-auto max-w-7xl px-6 py-4 text-center text-xs text-zinc-400">
-          Exercise App &middot; Data from dummyjson.com
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

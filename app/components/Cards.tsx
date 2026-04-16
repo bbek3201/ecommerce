@@ -48,7 +48,7 @@ export const Cards = ({ Product }: { Product: ProductType }) => {
             {[1, 2, 3, 4, 5].map((star) => (
               <svg
                 key={star}
-                className={`h-4 w-4 ${star <= 5 ? "text-amber-400" : "text-zinc-200 dark:text-zinc-700"}`}
+                className={`h-4 w-4 ${Product.rating >= star ? "text-amber-400" : "text-zinc-200 dark:text-zinc-700"}`}
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
