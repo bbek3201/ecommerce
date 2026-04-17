@@ -4,15 +4,13 @@ import { ReactNode } from "react";
 interface ProductType {
   id: number;
   title: string;
-  description: string;
+  description?: string;
   price: number;
   rating: number;
-  category: string;
   thumbnail: string;
-  catergpory: string;
-  images: string[];
+  category?: string;
+  images?: string[];
   brand: string;
-  details: string;
 }
 
 export const Cards = ({ Product }: { Product: ProductType }) => {
@@ -37,7 +35,7 @@ export const Cards = ({ Product }: { Product: ProductType }) => {
             {Product.title}
           </h2>
           <span className="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1 text-sm font-bold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
-            {Product.price}
+            ${Product.price}
           </span>
         </div>
         <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">

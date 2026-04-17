@@ -1,14 +1,22 @@
 import React from "react";
 
-export const ProductMain = (
-  imageIndex: string,
-  product: any,
-  HandleClick: (image: string) => void,
-  ProductInfo: React.FC<{ product: any }>,
-  Footer: React.FC,
-  discountedPrice: string,
-  Comments: React.FC<{ product: any }>,
-) => {
+interface ProductMainProps {
+  imageIndex: string;
+  product: any;
+  handleClick: (image: string) => void;
+  ProductInfo: React.FC<{ product: any }>;
+  discountedPrice: string;
+  Comments: React.FC<{ product: any }>;
+}
+
+export const ProductMain = ({
+  imageIndex,
+  product,
+  handleClick,
+  ProductInfo,
+  discountedPrice,
+  Comments,
+}: ProductMainProps) => {
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <div>
@@ -20,17 +28,17 @@ export const ProductMain = (
           />
         </div>
 
-        <div className="mt-4 grid grid-cols-4 gap-3 ">
+        <div className="mt-4 grid grid-cols-4 gap-3">
           {product?.images.map((image: string) => (
             <button
-              onClick={() => HandleClick(image)}
+              onClick={() => handleClick(image)}
               key={image}
               className="overflow-hidden rounded-xl border-2 border-zinc-900 dark:border-zinc-100 cursor-pointer"
             >
               <img
                 src={image}
-                alt="thumbnail 1"
-                className="h-20 w-full object-cover "
+                alt="thumbnail"
+                className="h-20 w-full object-cover"
               />
             </button>
           ))}
@@ -42,17 +50,14 @@ export const ProductMain = (
           {product?.category}
         </span>
 
-        {/* Title */}
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
           {product?.title}
         </h2>
 
-        {/* Brand */}
         <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
           {product?.brand}
         </p>
 
-        {/* Rating */}
         <div className="mt-4 flex items-center gap-2">
           <div className="flex">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -90,12 +95,13 @@ export const ProductMain = (
         <div className="mt-8 space-y-4 rounded-2xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
           <ProductInfo product={product} />
         </div>
+
         <div className="mt-6 flex items-center gap-2">
           <span
             className={`h-2.5 w-2.5 rounded-full ${product?.stock > 50 ? "bg-emerald-500" : product?.stock > 10 ? "bg-amber-500" : "bg-red-500"}`}
           ></span>
           <span className="text-sm font-medium">
-            Үлдэгдэл {product.stock} ширхэг
+            Үлдэгдэл {product?.stock} ширхэг
           </span>
         </div>
 

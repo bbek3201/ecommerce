@@ -16,7 +16,7 @@ export const ProductInfo = ({ product }: { product: any }) => {
         <div>
           <p className="text-xs text-zinc-400 dark:text-zinc-500">Категори</p>
           <p className="mt-0.5 text-sm font-medium text-zinc-900 dark:text-zinc-100">
-            beauty {product?.category}
+            {product?.category}
           </p>
         </div>
         <div>

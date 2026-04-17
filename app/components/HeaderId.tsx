@@ -16,7 +16,7 @@ export const HeaderId = () => {
               Product Store
             </h1>
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-              Product detail
+              Product
             </p>
           </div>
         </div>

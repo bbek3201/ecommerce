@@ -2,9 +2,10 @@ export type ProductType = {
   id: number;
   title: string;
   description: string;
-  category: string;
+  category?: string;
   price: number;
   discountPercentage: number;
+
   rating: number;
   stock: number;
   tags: string[];
@@ -36,4 +37,15 @@ export type ProductType = {
   };
   images: string[];
   thumbnail: string;
+};
+export type User = {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  accessToken: string;
+  refreshToken: string;
 };
