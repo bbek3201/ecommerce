@@ -48,6 +48,10 @@ export function Login() {
         return res.json();
       })
       .then((data) => {
+        if (data.message) {
+          setError("Нэвтрэх нэр буруу");
+          return;
+        }
         setUser?.(data);
         router.push("/");
       });

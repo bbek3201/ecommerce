@@ -10,7 +10,7 @@ export const Catergory = ({
   setSkip: (value: number) => void;
 }) => {
   return (
-    <nav className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900">
+    <nav className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900 cursor-pointer">
       <div className="mx-auto max-w-7xl px-6">
         <ul className="flex gap-1 overflow-x-auto py-3 no-scrollbar">
           <li>
