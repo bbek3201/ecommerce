@@ -23,7 +23,7 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext) ?? {};
   // TODO 5: State хувьсагчдыг зарлах
   // username - нэвтрэх нэр, эхлэх утга: ""
   // password - нууц үг, эхлэх утга: ""
@@ -48,7 +48,7 @@ export function Login() {
         return res.json();
       })
       .then((data) => {
-        setUser(data);
+        setUser?.(data);
         router.push("/");
       });
   };

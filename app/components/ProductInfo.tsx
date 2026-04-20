@@ -1,3 +1,4 @@
+import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 import React from "react";
 
 export const ProductInfo = ({ product }: { product: any }) => {

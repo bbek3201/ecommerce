@@ -1,22 +1,25 @@
 import React from "react";
+import { ProductType } from "../types";
+import { Comments } from "./Comments";
+import { ProductInfo } from "./ProductInfo";
 
 interface ProductMainProps {
   imageIndex: string;
-  product: any;
+  product: ProductType;
   handleClick: (image: string) => void;
   ProductInfo: React.FC<{ product: any }>;
   discountedPrice: string;
-  Comments: React.FC<{ product: any }>;
 }
 
-export const ProductMain = ({
+export const ProductMain: React.FC<ProductMainProps> = ({
   imageIndex,
   product,
-  handleClick,
-  ProductInfo,
   discountedPrice,
-  Comments,
-}: ProductMainProps) => {
+}) => {
+  function handleClick(image: string): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <div>

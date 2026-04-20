@@ -6,18 +6,19 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { ProductType } from "@/app/types";
-import { Footer } from "@/app/components/Footer";
+
 import { HeaderId } from "@/app/components/HeaderId";
-import { ProductInfo } from "@/app/components/ProductInfo";
-import { Comments } from "@/app/components/Comments";
+
 import { ProductMain } from "@/app/components/ProductMain";
+import { ProductInfo } from "@/app/components/ProductInfo";
+import { Footer } from "@/app/components/Footer";
 
 export default function ProductDetail() {
   const { id } = useParams();
 
   const [product, setProduct] = useState<ProductType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<ProductType | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [imageIndex, setImageIndex] = useState<string>("");
 
   useEffect(() => {
@@ -30,8 +31,7 @@ export default function ProductDetail() {
         setLoading(false);
       })
       .catch((err) => {
-        setError(err);
-        setLoading(false);
+        setError(err.message || "Алдаа гарлаа");
       });
   }, []);
 
@@ -59,15 +59,13 @@ export default function ProductDetail() {
       <HeaderId />
 
       <main className="mx-auto max-w-7xl px-6 py-10">
-        {ProductMain(
-          imageIndex,
-          product,
-          HandleClick,
-          ProductInfo,
-          Footer,
-          discountedPrice,
-          Comments,
-        )}
+        <ProductMain
+          ProductInfo={ProductInfo}
+          imageIndex={imageIndex}
+          product={product}
+          handleClick={HandleClick}
+          discountedPrice={discountedPrice}
+        />
       </main>
       <Footer />
     </div>
