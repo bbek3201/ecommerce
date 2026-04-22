@@ -12,7 +12,7 @@ import { HeaderId } from "@/app/components/HeaderId";
 import { ProductMain } from "@/app/components/ProductMain";
 import { ProductInfo } from "@/app/components/ProductInfo";
 import { Footer } from "@/app/components/Footer";
-
+import axios from "axios";
 export default function ProductDetail() {
   const { id } = useParams();
 
@@ -22,12 +22,11 @@ export default function ProductDetail() {
   const [imageIndex, setImageIndex] = useState<string>("");
 
   useEffect(() => {
-    let responseStatus = 200;
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        setImageIndex(data.images[0]);
+    axios
+      .get(`https://dummyjson.com/products/${id}`)
+      .then((res) => {
+        setProduct(res.data);
+        setImageIndex(res.data.images[0]);
         setLoading(false);
       })
       .catch((err) => {

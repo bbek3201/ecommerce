@@ -10,7 +10,6 @@ interface ProductMainProps {
   ProductInfo: React.FC<{ product: any }>;
   discountedPrice: string;
 }
-
 export const ProductMain: React.FC<ProductMainProps> = ({
   imageIndex,
   product,
@@ -19,7 +18,6 @@ export const ProductMain: React.FC<ProductMainProps> = ({
   function handleClick(image: string): void {
     throw new Error("Function not implemented.");
   }
-
   return (
     <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <div>

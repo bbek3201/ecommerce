@@ -8,7 +8,7 @@ import { useDebounce } from "use-debounce";
 import React from "react";
 import { ProductType } from "./types";
 import { Footer } from "./components/Footer";
-
+import axios from "axios";
 const PRODUCTS_PER_PAGE = 10;
 
 export default function Home() {

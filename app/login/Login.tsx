@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { User } from "../types";
 import Link from "next/link";
 import { UserContext } from "../providers/Provider";
+import axios from "axios";
 // TODO 3: LoginResponse төрөл зарлах
 
 // API: https://dummyjson.com/auth/login
@@ -24,6 +25,7 @@ export function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { user, setUser } = useContext(UserContext) ?? {};
+
   // TODO 5: State хувьсагчдыг зарлах
   // username - нэвтрэх нэр, эхлэх утга: ""
   // password - нууц үг, эхлэх утга: ""
@@ -34,27 +36,29 @@ export function Login() {
       router.push("/");
     }
   }, [user]);
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    fetch("https://dummyjson.com/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: {
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.message) {
-          setError("Нэвтрэх нэр буруу");
-          return;
-        }
-        setUser?.(data);
-        router.push("/");
+    setError("");
+    setLoading(true);
+    try {
+      const res = await axios.post("https://dummyjson.com/auth/login", {
+        username,
+        password,
       });
+      if (!res.data || res.data.message) {
+        setError("Нэвтрэх нэр буруу");
+        return;
+      }
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setUser?.(res.data);
+      router.push("/");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Алдаа гарлаа");
+    } finally {
+      setLoading(false);
+    }
   };
 
   // TODO 6: handleSubmit функц бичих
